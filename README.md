@@ -15,7 +15,7 @@ The data had been appended to empty dictionaries that were converted into datafr
 # Load
 This step involved using SQLAlchemy to connect to SQL Server and writing the records within the finalized dataframes to a local database consisting of matching tables and columns. See the schema ERD.
 # Next Steps
-The project's basic foundataion is complete but several points of improvement or advancement include:
+The project's basic foundation is complete but several points of improvement or advancement include:
 - Modify the script to load all the data extracted from the API.
 - Deploy the database to the cloud.
 - Write exploratory queries and begin analysis.
