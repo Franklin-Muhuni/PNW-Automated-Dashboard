@@ -17,10 +17,8 @@ This step involved using SQLAlchemy to connect to SQL Server and writing the rec
 # Dashboard
 Data was queried and aggregated in this step to create table views (and measures later) that were imported into Power BI to be used in the construction of the data model. 
 
-![Dashboard IMG](https://i.imgur.com/pM4fbLV.png)
+![Dashboard IMG](https://i.imgur.com/7CiGpI2.png)
 # Next Steps
 The project's basic foundation is complete but several points of improvement or advancement include:
 - Modify the script to load all the data extracted from the API.
 - Include more endpoints to increase accuracy of any future filtering.
-- Deploy the database to the cloud.
-- Write exploratory queries and begin analysis.
