@@ -3,7 +3,7 @@ This project was built to illustrate a basic implementation of **E**xtract-**L**
 # Data Sources
 All the data I need for now comes from the V3 GraphQL API. Important resources for locating and testing endpoints can be found on the pnwkit-py repository and [documentation](https://docs.pnwkit-py.mrvillage.dev/en/latest/index.html) as well the [API playground](https://api.politicsandwar.com/graphql-playground).
 # Schema ERD
-![Schema ERD](https://github.com/Franklin-Muhuni/Nation-Sim-ETL-Project/blob/main/Updated%20PnWDB%20ERD.png?raw=true)
+![Schema ERD](https://github.com/Franklin-Muhuni/Nation-Sim-ETL-Project/blob/main/PnWDB%20ERD.png?raw=true)
 # Extract
 Using the pnwkit-py module I was able to query for specific attributes for each of the endpoints called, which saved the need for dropping any unnecessary data from the tables. So far I focussed on the following fields:
 - Alliances
