@@ -16,6 +16,7 @@ The data had been appended to empty dictionaries that were converted into datafr
 This step involved using SQLAlchemy to connect to SQL Server and writing the records within the finalized dataframes to a local database consisting of matching tables and columns. See the schema ERD.
 # Dashboard
 Data was queried and aggregated in this step to create table views (and measures later) that were imported into Power BI to be used in the construction of the data model. 
+
 ![Dashboard IMG](https://i.imgur.com/pM4fbLV.png)
 # Next Steps
 The project's basic foundation is complete but several points of improvement or advancement include:
