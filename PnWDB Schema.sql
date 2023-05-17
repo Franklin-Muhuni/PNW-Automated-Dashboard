@@ -5,8 +5,7 @@ CREATE TABLE [alliances] (
   [alliance_id] SMALLINT PRIMARY KEY NOT NULL,
   [alliance_name] VARCHAR(100) NOT NULL,
   [founded] DATETIME NOT NULL,
-  [color_bloc] VARCHAR(100) NOT NULL,
-  [alliance_score] FLOAT NOT NULL
+  [color_bloc] VARCHAR(100) NOT NULL
 )
 GO
 
@@ -32,15 +31,16 @@ CREATE TABLE [nations] (
   [ships] SMALLINT NOT NULL,
   [missiles] SMALLINT NOT NULL,
   [nukes] SMALLINT NOT NULL,
+  [vm_turns] INT NOT NULL,
   [last_active] DATETIME NOT NULL
 )
 GO
 
 CREATE TABLE [treaties] (
-  [id] INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-  [treaty_id] INT NOT NULL,
+  [treaty_id] INT PRIMARY KEY NOT NULL,
   [treaty_type] VARCHAR(50) NOT NULL,
-  [alliance_id] SMALLINT NOT NULL,
+  [sending_alliance_id] SMALLINT NOT NULL,
+  [receiving_alliance_id] SMALLINT NOT NULL,
   [date_signed] DATETIME NOT NULL,
   [turns_left] SMALLINT NOT NULL
 )
@@ -60,7 +60,8 @@ GO
 ALTER TABLE [nations] ADD FOREIGN KEY ([alliance_id]) REFERENCES [alliances] ([alliance_id])
 GO
 
-ALTER TABLE [treaties] ADD FOREIGN KEY ([alliance_id]) REFERENCES [alliances] ([alliance_id])
+ALTER TABLE [treaties] ADD FOREIGN KEY ([sending_alliance_id]) REFERENCES [alliances] ([alliance_id])
+ALTER TABLE [treaties] ADD FOREIGN KEY ([receiving_alliance_id]) REFERENCES [alliances] ([alliance_id])
 GO
 
 ALTER TABLE [cities] ADD FOREIGN KEY ([nation_id]) REFERENCES [nations] ([nation_id])
