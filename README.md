@@ -11,7 +11,7 @@ Using the pnwkit-py module I was able to query for specific attributes for each 
 - Cities
 - Treaties
 # Transform
-The data had been appended to empty dictionaries that were converted into dataframes and the columns datatypes were modified to more appropriate formats. Initial dataframes consisted of information related to over 47K+ simulated nations, but roughly 37K of them were excluded from the final sets as nearly all of them were found to come from inactive accounts when they were finally retrieved.
+The data had been appended to empty dictionaries that were converted into dataframes and the columns datatypes were modified to more appropriate formats. Initial dataframes consisted of information related to over 47K+ simulated nations, but roughly 37K of them were excluded from the final sets as nearly all of them were found to come from inactive accounts when they were finally retrieved. At the moment only about 5k+ nations are active and generate relevant data.
 # Load
 This step involved using SQLAlchemy to connect to SQL Server and writing the records within the finalized dataframes to a local database consisting of matching tables and columns. See the schema ERD.
 # Dashboard
