@@ -11,7 +11,7 @@ Using the pnwkit-py module I was able to query for specific attributes for each 
 - Cities
 - Treaties
 # Transform
-The data had been appended to empty dictionaries that were converted into dataframes and the columns datatypes were modified to more appropriate formats. Initial dataframes consisted of information related to over 47K+ simulated nations, but roughly 37K of them were excluded from the final sets to conform to integrity constraints in the database. I intend to amend this in the future as null values and inconsistencies in the data have not been accounted for in the script.
+The data had been appended to empty dictionaries that were converted into dataframes and the columns datatypes were modified to more appropriate formats. Initial dataframes consisted of information related to over 47K+ simulated nations, but roughly 37K of them were excluded from the final sets as nearly all of them were found to come from inactive accounts when they were finally retrieved.
 # Load
 This step involved using SQLAlchemy to connect to SQL Server and writing the records within the finalized dataframes to a local database consisting of matching tables and columns. See the schema ERD.
 # Dashboard
@@ -19,6 +19,6 @@ Data was queried and aggregated in this step to create table views (and measures
 
 ![Dashboard IMG](https://i.imgur.com/7CiGpI2.png)
 # Next Steps
-The project's basic foundation is complete but several points of improvement or advancement include:
-- Modify the script to load all the data extracted from the API.
-- Include more endpoints to increase accuracy of any future filtering.
+The project is nearly complete, and nearly all relevant data is in use. The following tasks remain:
+- Scheduling the script to run automatically at a certain time everyday.
+- Gathering daily historical data to be plotted in the finalized dashboard.
