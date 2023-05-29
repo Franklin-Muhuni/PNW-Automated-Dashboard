@@ -20,5 +20,4 @@ Data was queried and aggregated in this step to create table views (and measures
 ![Dashboard IMG](https://i.imgur.com/7CiGpI2.png)
 # Next Steps
 The project is nearly complete, and nearly all relevant data is in use. The following tasks remain:
-- Scheduling the script to run automatically at a certain time everyday.
 - Gathering daily historical data to be plotted in the finalized dashboard.
