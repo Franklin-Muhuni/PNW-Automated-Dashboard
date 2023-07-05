@@ -1,56 +1,76 @@
 USE PnWDB;
 GO
 
+CREATE TABLE [daily_militarization] (
+	[date] DATE NOT NULL,
+	[nation_id] INT NOT NULL,
+	[soldiers] INT NOT NULL,
+	[soldier_militarization] FLOAT NOT NULL,
+	[tanks] INT NOT NULL,
+	[tank_militarization] FLOAT NOT NULL,
+	[aircraft] SMALLINT NOT NULL,
+	[aircraft_militarization] FLOAT NOT NULL,
+	[ships] SMALLINT NOT NULL,
+	[ship_militarization] FLOAT NOT NULL
+)
+GO
+
 CREATE TRIGGER [update_military_stats]
-ON dbo.nations
+ON dbo.militaries
 AFTER INSERT
 AS
 BEGIN
 	SET NOCOUNT ON;
 	INSERT INTO daily_militarization
-	SELECT FORMAT(GETDATE(),'yyyy-MM-dd') AS date, nation_id,
-		soldiers * 1.0 / (3000 * 5 * cities) AS soldier_militarization,
-		tanks * 1.0 / (250 * 5 * cities) AS tank_militarization,
-		aircraft * 1.0 / (15 * 5 * cities) AS plane_militarization,
-		ships * 1.0 / (5 * 3 * cities) AS ship_militarization
-	FROM inserted
+	SELECT FORMAT(GETDATE(),'yyyy-MM-dd') AS date, i.nation_id AS nation_id,
+		i.soldiers AS soldiers,
+		i.soldiers * 1.0 / (3000 * 5 * n.cities) AS soldier_militarization,
+		i.tanks AS tanks,
+		i.tanks * 1.0 / (250 * 5 * n.cities) AS tank_militarization,
+		i.aircraft AS aircraft,
+		i.aircraft * 1.0 / (15 * 5 * n.cities) AS aircraft_militarization,
+		i.ships AS ships,
+		i.ships * 1.0 / (5 * 3 * n.cities) AS ship_militarization
+	FROM inserted i
+	JOIN nations n
+		ON i.nation_id = n.nation_id
 END;
 GO
 
 CREATE VIEW [nations_tformed] AS
-SELECT nation_id, 
-	nation_name, 
-	leader_name, 
-	cities, 
-	color_bloc, 
-	nation_score, 
+SELECT nation_id,
+	color_id, 
 	alliance_id, 
-	soldiers, 
-	tanks, 
-	aircraft, 
-	ships,
+	nation_name,  
+	cities, 
+	nation_score, 
 	last_active
 FROM nations
-WHERE alliance_position <> 'APPLICANT' AND vm_turns = 0;
+WHERE position_id <> 1 AND vacation_mode_turns = 0;
 GO
 
 CREATE VIEW [militarization] AS
 SELECT m.date, 
-	m.nation_id, 
-	m.soldier_militarization, 
-	m.tank_militarization, 
-	m.plane_militarization, 
+	m.nation_id,
+	m.soldiers,
+	m.soldier_militarization,
+	m.tanks,
+	m.tank_militarization,
+	m.aircraft,
+	m.aircraft_militarization,
+	m.ships,
 	m.ship_militarization
 FROM daily_militarization m
 JOIN nations n 
-	ON m.nation_id = n.alliance_id
-WHERE n.alliance_position <> 'APPLICANT' AND vm_turns = 0;
+	ON m.nation_id = n.nation_id
+WHERE n.position_id <> 1 AND vacation_mode_turns = 0;
 GO
 
-CREATE VIEW [cities_tformed] AS
-SELECT c.city_id, c.city_name, c.nation_id, c.infrastructure
-FROM cities c
-JOIN nations n
-	ON c.nation_id = n.nation_id
-WHERE alliance_position <> 'APPLICANT' AND vm_turns = 0;
-GO
+CREATE VIEW [treaties_tformed] AS
+SELECT treaty_id, a1.alliance_name AS sending_alliance, a2.alliance_name AS receiving_alliance
+FROM treaties t
+JOIN alliances a1 
+	ON t.sending_alliance_id = a1.alliance_id
+JOIN alliances a2 
+	ON t.receiving_alliance_id = a2.alliance_id
+WHERE t.treaty_type = 'MDP' OR t.treaty_type = 'MDoAP' OR t.treaty_type = 'Protectorate';
