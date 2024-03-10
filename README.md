@@ -14,6 +14,6 @@ The data didn't require much cleaning and was appended to dictionaries and conve
 # Load
 This step involved using SQLAlchemy to connect to SQL Server and writing the records within the finalized dataframes to a local database consisting of matching tables and columns. See the schema ERD.
 # Dashboard
-Data was queried and aggregated in this step to create table views that were imported into Power BI to be used in the construction of the data model. The interactive report can be found at 
+Data was queried and aggregated in this step to create table views that were imported into Power BI to be used in the construction of the data model.
 
 ![Dashboard IMG](https://i.imgur.com/3HwTng5.png)
